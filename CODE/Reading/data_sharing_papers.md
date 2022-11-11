@@ -1,4 +1,4 @@
-## Information Sharing for Distributed Intrusion Detection System
+# Information Sharing for Distributed Intrusion Detection System
 ### Challenges want to address:
 1. What information to share
 2. How to share information
@@ -45,3 +45,10 @@
 1. They choose the statistics they are interested in. But what if we cannot find a single statistics that can detect the intrusion detection, what if the detection is only detected when we use many features?
 2. How to choose which thresholds to detect the anomalies, what if the data from each measurements points are ver diverse? How do they come up with the mechanism to combine the data from various points?
 3. How to detect the changes due to the natural variations of the network versus the one caused by intrusion?
+
+
+
+
+
+
+
