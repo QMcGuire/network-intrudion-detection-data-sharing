@@ -45,10 +45,65 @@
 1. They choose the statistics they are interested in. But what if we cannot find a single statistics that can detect the intrusion detection, what if the detection is only detected when we use many features?
 2. How to choose which thresholds to detect the anomalies, what if the data from each measurements points are ver diverse? How do they come up with the mechanism to combine the data from various points?
 3. How to detect the changes due to the natural variations of the network versus the one caused by intrusion?
+4. What to do in the presence of no groundtruth? 
+
+
+
+### What I like
+1. The way they construct is flexible trade off betwen the delay time and the overhead. 
+
+### My take away:
+1. Cumulative might be a good way to aggregate anomalous data because it smooth out any temporal variations and aggregate the detection of various systems, especially if attacks is at the same time
+2. Can divide the subnetwork to detect monitor sudden changes early and effectively
+3. 
 
 
 
 
+
+
+# Automatic Relational Data Augmentation for ML
+### What it is
+1. An end-to-end system that takes as input a datset and a data repository, and outputs an augmented dataset such that training a predictive model oon this augmented sataset results in improved performance.
+2. OUr system has 2 distinct components: a framework to search and join data with the input data, based on various attributes of the i nput and an efficient feature selection algorithm that prunes out noisy or irrelevant features from the resulting join
+3. We explore how we can extend existing automatic machine learning tools to also perform automatic data augmentation byy joining related tables
+### Challenges:
+1. integrating related datasets requires finding the right join key between different datasets
+2. There might be hundreds of related tables
+### Big idea:
+1. Works by first constructing a coreset, a representative but small set of rows from the original sample table. This coreset is strategically joined with candidate tables and features are evaluated using a novel technique called Random Injection Feature Selection (RIFS).
+2. At a high level, RIFS helps determine if the results of a join are helpful for a predictive model by comparing candidate features against noise: if a candidate feature performs no better than a feature consisting of random noise, that feature is unlikely to be useful.
+3. ARDA handles joins between mismatched keys that may not perfectly align using several interpolation strategies. 
+4. The final output of ARDA is an augmented dataset, containing all of the user's original dataset as well as additional features that increase the performance of a predictive model.
+
+### Contribution
+1. We introduce ARDA, a system for automatic relational data augmentation which can discover joins that improve the performance of predictive models
+2. Propose simple methods for performing one to many and soft key joins useful for ML models
+3. Introduce RIFS, a specific feature selection technique custom-tailored to relational data augmentation
+### Augmentatin workflow
+#### coreset construction:
+1. 2 main techniques, sampling and sketching
+2. sampling: selects a subsets of the rows and re-weights them to obtain a coreset
+3. sketching relies on taking sparse linear combination of rows which inherently results in modified row values
+#### Join plan
+1. supports single key join, multiple key join, mixed key join and multiple option key join
+2. hard join where the value is exact match
+3. soft key, do not require an exact match but the closest value
+#### Join execution
+#### Feature selection
+1. Feature selection can be broadly categorized into filter models, wrapper models and embedded models
+2. Filter model separates feature selection from classifier learning so that the bias of a learning algorithm does not interact with the bias of a feature selection algorithm. These algorithms rely on general characteristics of the training data such as distance, consistency, dependency, information and correlation
+3. The wrapper model uses the predictive accuracy of the learning algorithm to determine the quality of selected features. Wrapper-type feature selection methods are tightly coupled with a specific classifier. Such methods are likely to get stuck in local minimax
+4. Embedded model which includes information about labels and incorporates the performance of the model on the holdout data. Typically, the first step is to obtain a ranking of the features by optimizing a convex loss function
+
+### Contribution
+#### Random Injection Based Feature Selection
+1. Design a comparison-based feature selection algorithm that circumvents the requirement of testing each subset of features.
+2. Do this by injecting carefully constructed random features into our dataset. Use the random feaatures as a baseline to compare the input features with.
+3. 
+
+### My question
+is it model dependent
 
 
 
